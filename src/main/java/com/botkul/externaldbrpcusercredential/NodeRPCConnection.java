@@ -16,9 +16,9 @@ public class NodeRPCConnection {
 
     @PostConstruct
     public void initialiseNodeRpcConnection() {
-        NetworkHostAndPort hostAndPort = new NetworkHostAndPort("localhost", 10009);
+        NetworkHostAndPort hostAndPort = new NetworkHostAndPort("localhost", 10006);
         CordaRPCClient client = new CordaRPCClient(hostAndPort);
-        cordaRPCConnection = client.start("user1", "test");
+        cordaRPCConnection = client.start("user1", "user1@syne");
         proxy = cordaRPCConnection.getProxy();
     }
 

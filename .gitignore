@@ -11,6 +11,8 @@ tags
 .gradle
 
 # General build files
+target/
+
 **/build/*
 !docs/build/*
 

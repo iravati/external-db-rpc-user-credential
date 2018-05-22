@@ -1,10 +1,14 @@
 package com.botkul.externaldbrpcusercredential.controller;
 
 import com.botkul.externaldbrpcusercredential.NodeRPCConnection;
+import net.corda.core.node.NodeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/obligation")
@@ -18,7 +22,8 @@ public class ObligationApi {
     }
 
     @RequestMapping(value = "/parties", method = RequestMethod.GET)
-    public String parties() {
+    public List<String> parties() {
         return rpc.getProxy().networkMapSnapshot().stream()
+                .map(it -> it.getLegalIdentities().stream().findFirst().toString()).collect(Collectors.toList());
     }
 }
